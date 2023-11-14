@@ -1,45 +1,43 @@
-# Interacting With Balances
+# Enable Balance Transfers
 
-Now that we have the basics of our `BalancesModule` set up, let's actually interact with it.
+Now that we have initialized and started to use our balances module, let's add probably the most important API: `transfer`.
 
-For that, we will go back to the `main.rs` file, and create our first `#[test]` which will play with the code we have written so far.
+## Learn
 
-1. In your `src/main.rs` file, add a new test named `fn init_balances()`:
+Before we write our function, it is important that we review some of the principles of blockchain and Rust.
 
-	```rust
-	#[test]
-	fn init_balances() { }
-	```
+### Bad Actors
 
-2. To begin our test, we need to initialize a new instance of our `BalancesModule`:
+### Safe Math
 
-	```rust
-	#[test]
-	fn init_balances() {
-		let mut balances = balances::BalancesModule::new();
-	}
-	```
+### Error Handling
 
-	Note that we make this variable `mut` since we plan to mutate our state using our newly created API.
 
-3. Finally, let's check that our read and write APIs are working as expected:
 
-	```rust
-	#[test]
-	fn init_balances() {
-		let mut balances = balances::BalancesModule::new();
+## Create Transfer
 
-		assert_eq!(balances.balance(&"alice"), 0);
-		balances.set_balance(&"alice", 100);
-		assert_eq!(balances.balance(&"alice"), 100);
-		assert_eq!(balances.balance(&"bob"), 0);
-	}
-	```
+So let's create our `transfer` function:
 
-4. We can run this specific test using `cargo test init_balances`, where hopefully you should see that it passes.
+1. In your
 
-I hope at this point you can start to see the beginnings of your simple blockchain state machine.
+```rust
+impl BalancesModule {
+    pub fn transfer(&mut self, from: &'static str, to: &'static str, amount: u128) -> Result<(), &'static str> {
+        let from_balance = self.balance(&from);
+        let to_balance = self.balance(&to);
 
+        let new_from_balance = from_balance
+            .checked_sub(amount)
+            .ok_or("Not enough funds.")?;
+        let new_to_balance = to_balance.checked_add(amount).ok_or("Overflow")?;
+
+        self.balances.insert(from, new_from_balance);
+        self.balances.insert(to, new_to_balance);
+
+        Ok(())
+    }
+}
+```
 
 <!-- slide:break -->
 
