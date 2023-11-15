@@ -1,15 +1,12 @@
 mod balances;
 mod system;
 
-type AccountId = &'static str;
-type Balance = u128;
-
 // This is our main Runtime.
 // It accumulates all of the different pallets we want to use.
 #[derive(Debug)]
 pub struct Runtime {
 	system: system::Pallet<Self>,
-	balances: balances::Pallet<AccountId, Balance>,
+	balances: balances::Pallet<Self>,
 }
 
 impl system::Config for Runtime {
@@ -18,11 +15,10 @@ impl system::Config for Runtime {
 	type Nonce = u32;
 }
 
-/*
-	TODO:
-	Implement the `balances::Config` trait you created on your `Runtime`.
-	Use `Self` to satisfy the generic parameter required for `balances::Pallet`.
-*/
+impl balances::Config for Runtime {
+	type AccountId = &'static str;
+	type Balance = u128;
+}
 
 impl Runtime {
 	// Create a new instance of the main Runtime, by creating a new instance of each pallet.
