@@ -3,14 +3,14 @@ mod system;
 
 type AccountId = &'static str;
 type Balance = u128;
-/* TODO: Move your type definitions for `BlockNumber` and `Nonce` here. */
+type BlockNumber = u32;
+type Nonce = u32;
 
 // This is our main Runtime.
 // It accumulates all of the different pallets we want to use.
 #[derive(Debug)]
 pub struct Runtime {
-	/* TODO: Use your type definitions for your new generic `system::Pallet`. */
-	system: system::Pallet,
+	system: system::Pallet<AccountId, BlockNumber, Nonce>,
 	balances: balances::Pallet<AccountId, Balance>,
 }
 
