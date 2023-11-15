@@ -10,8 +10,8 @@ mod types {
 	pub type BlockNumber = u32;
 	pub type Nonce = u32;
 	pub type Balance = u128;
-	/* TODO: Define a concrete `Extrinsic` type using `AccountId` and `RuntimeCall`. */
-	/* TODO: Define a concrete `Block` type using `BlockNumber` and `Extrinsic`. */
+	pub type Extrinsic = crate::support::Extrinsic<AccountId, crate::RuntimeCall>;
+	pub type Block = crate::support::Block<BlockNumber, Extrinsic>;
 }
 
 // These are all the calls which are exposed to the world.
