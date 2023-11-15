@@ -1,17 +1,15 @@
 mod balances;
 mod system;
 
-/*
-	TODO: Move your type definitions for `AccountId` and `Balance` here.
-*/
+type AccountId = &'static str;
+type Balance = u128;
 
 // This is our main Runtime.
 // It accumulates all of the different pallets we want to use.
 #[derive(Debug)]
 pub struct Runtime {
 	system: system::Pallet,
-	/* TODO: Use your type definitions for your new generic `balances::Pallet`. */
-	balances: balances::Pallet,
+	balances: balances::Pallet<AccountId, Balance>,
 }
 
 impl Runtime {
