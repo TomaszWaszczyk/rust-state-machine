@@ -3,21 +3,19 @@ mod system;
 
 type AccountId = &'static str;
 type Balance = u128;
-type BlockNumber = u32;
-type Nonce = u32;
-
-/*
-	TODO:
-	Implement the `system::Config` trait you created on your `Runtime`.
-	Use `Self` to satisfy the generic parameter required for `system::Pallet`.
-*/
 
 // This is our main Runtime.
 // It accumulates all of the different pallets we want to use.
 #[derive(Debug)]
 pub struct Runtime {
-	system: system::Pallet<AccountId, BlockNumber, Nonce>,
+	system: system::Pallet<Self>,
 	balances: balances::Pallet<AccountId, Balance>,
+}
+
+impl system::Config for Runtime {
+	type AccountId = &'static str;
+	type BlockNumber = u32;
+	type Nonce = u32;
 }
 
 impl Runtime {
