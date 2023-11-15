@@ -10,6 +10,14 @@ mod types {
 	pub type BlockNumber = u32;
 	pub type Nonce = u32;
 	pub type Balance = u128;
+	/* TODO: Define a concrete `Extrinsic` type using `AccountId` and `RuntimeCall`. */
+	/* TODO: Define a concrete `Block` type using `BlockNumber` and `Extrinsic`. */
+}
+
+// These are all the calls which are exposed to the world.
+// Note that it is just an accumulation of the calls exposed by each module.
+pub enum RuntimeCall {
+	// TODO: Not implemented yet.
 }
 
 // This is our main Runtime.
