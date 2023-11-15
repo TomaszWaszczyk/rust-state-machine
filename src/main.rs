@@ -93,7 +93,11 @@ impl crate::support::Dispatch for Runtime {
 }
 
 fn main() {
+	// Create a new instance of the Runtime.
+	// It will instantiate with it all the modules it uses.
 	let mut runtime = Runtime::new();
+
+	// Initialize the system with some initial balance.
 	runtime.balances.set_balance(&"alice", 100);
 
 	// start emulating a block
@@ -111,5 +115,20 @@ fn main() {
 		.transfer(&"alice", &"charlie", 20)
 		.map_err(|e| eprintln!("{}", e));
 
+	/*
+		TODO: Replace the logic above with a new `Block`.
+			- Set the block number to 1 in the `Header`.
+			- Move your existing transactions into extrinsic format, using the
+			  `Extrinsic` and `RuntimeCall`.
+	*/
+
+	/*
+		TODO:
+		Use your `runtime` to call the `execute_block` function with your new block.
+		If the `execute_block` function returns an error, you should panic!
+		We `expect` that all the blocks being executed must be valid.
+	*/
+
+	// Simply print the debug format of our runtime state.
 	println!("{:#?}", runtime);
 }
