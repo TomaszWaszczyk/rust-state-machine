@@ -18,6 +18,10 @@ TODO
 
 [filename](./src/main.rs ':include :type=code rust')
 
+#### **proof_of_existence.rs**
+
+[filename](./src/proof_of_existence.rs ':include :type=code rust')
+
 #### **support.rs**
 
 [filename](./src/support.rs ':include :type=code rust')
@@ -39,6 +43,10 @@ TODO
 #### **main.rs**
 
 [filename](./src/main.rs ':include :type=code rust')
+
+#### **proof_of_existence.rs**
+
+[filename](./src/proof_of_existence.rs ':include :type=code rust')
 
 #### **support.rs**
 
