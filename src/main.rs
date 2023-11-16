@@ -122,13 +122,11 @@ fn main() {
 		extrinsics: vec![
 			support::Extrinsic {
 				caller: &"alice",
-				/* TODO: Update the enum name to match what is generated with the macro. */
-				call: RuntimeCall::Balances(balances::Call::Transfer { to: &"bob", amount: 20 }),
+				call: RuntimeCall::Balances(balances::Call::transfer { to: &"bob", amount: 20 }),
 			},
 			support::Extrinsic {
 				caller: &"alice",
-				/* TODO: Update the enum name to match what is generated with the macro. */
-				call: RuntimeCall::Balances(balances::Call::Transfer {
+				call: RuntimeCall::Balances(balances::Call::transfer {
 					to: &"charlie",
 					amount: 20,
 				}),
